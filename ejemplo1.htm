@@ -6,6 +6,44 @@
    <title>Ejemplo 1</title>
 </head>
 <body>
+    <button id="boton1">Púlsame</button>
+    <p id="resultado"></p>
 
+    <script>
+        /* Comillas simples o dobles */
+        document.getElementById("boton1").style.backgroundColor = "red";
+        document.getElementById("boton1").style.color = "#fff";
+
+        /* Creamos una variable con el método antiguo */
+        var boton1 = document.getElementById("boton1");
+        boton1.style.padding = "1rem";
+
+        /* Creamos una variable cuyo valor puede cambiar en el futuro.
+        , es decir, asignarle otra cosa con el = */
+        let boton1_1 = document.getElementById("boton1");
+        boton1_1.style.fontSize = "2rem";
+
+        /*Creamos una variable cuyo valor no cambiará en el futuro*/
+        const boton1_2 = document.getElementById("boton1");
+        boton1_2.style.textTransform = "uppercase";
+        
+        /* creo una variable con el valor 3*/
+        let numero1 = 3;
+        /* creo una variable con el valor 5*/
+        let numero2 = 5;
+        /* creo una variable con el valor 8 (la suma de las otras dos)*/
+        let suma = numero1 + numero2;
+        /* La consola aparece en el inspector del navegador en la
+        pestaña console */
+        console.log(suma);
+        /* Cambiamos el contenido del párrafo, mostrando la suma*/
+        document.getElementById("resultado").innerHTML = suma;
+        /* Muestra un cuadro de diálogo con el texto indicado.
+        Un cuadro de diálogo impide seguir trabajando mientras
+        no se cierre */
+        window.alert("¿Molesto?");
+
+
+    </script>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo 3</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div>
+        <p class="m-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate consectetur nesciunt earum excepturi eligendi accusamus architecto temporibus laudantium sapiente illum tempora, aut sequi dolores cum quidem quos? Nisi, dolore? Provident!</p>
+        <p class="m-3">Sapiente nobis nulla ipsa corporis explicabo sequi debitis cupiditate consequuntur optio eveniet? Perspiciatis maiores perferendis corporis autem eaque quibusdam voluptates amet voluptate earum qui ipsa est incidunt mollitia, consequatur impedit.</p>
+        <p class="m-3">Nobis, quisquam at! Tenetur facere blanditiis id est, in maiores perspiciatis nobis voluptatibus. Consequuntur laudantium, earum porro voluptate eveniet fuga placeat cupiditate assumenda quidem eligendi. Voluptas earum sint minima iure.</p>
+        <p class="m-3">Asperiores reprehenderit tempore autem, dolore veritatis nihil at, quos qui earum beatae temporibus ipsum labore enim optio nemo illo error illum excepturi perspiciatis tenetur fugit cumque deserunt sequi officia. Provident!</p>
+    </div>
+    <input type="button" id="rojo" name="" value="poner en rojo" class="btn btn-danger">
+    <input type="button" id="verde" name="" value="poner en verde" class="btn btn-success">
+    <input type="button" id="azul" name="" value="poner en azul" class="btn btn-primary">
+    <input type="range" name="" id="tamanho" min="1" max="10">
+
+    <script>
+        function ponerRojo() {
+            // Podemos poner cualquier selector de CSS
+            // Devuelve el primero que encuentra si hay varios
+            document.querySelector("p:first-of-type").style.color = "red";
+            document.querySelector("p:nth-of-type(2)").style.color = "red";
+            document.querySelector("p:nth-of-type(3)").style.color = "red";
+            document.querySelector("p:nth-of-type(4)").style.color = "red";
+        }
+
+        function ponerAzul() {
+            document.querySelector("p:first-of-type").style.color = "blue";
+            document.querySelector("p:nth-of-type(2)").style.color = "blue";
+            document.querySelector("p:nth-of-type(3)").style.color = "blue";
+            document.querySelector("p:nth-of-type(4)").style.color = "blue";
+        }
+
+        function ponerVerde() {
+            document.querySelector("p:first-of-type").style.color = "green";
+            document.querySelector("p:nth-of-type(2)").style.color = "green";
+            document.querySelector("p:nth-of-type(3)").style.color = "green";
+            document.querySelector("p:nth-of-type(4)").style.color = "green";
+        }
+
+        function cambiarMargen() {
+            // Cogemos el valor que tenga el range
+            const valor = document.getElementById("tamanho").value;
+            //console.log(valor);
+            document.querySelector("div").style.marginLeft = valor + "rem";
+            // Cadenas interpoladas
+            //document.querySelector("div").style.marginLeft = `${valor}rem`;
+        }
+
+        function cambiarFondo() {
+            document.querySelector("div").style.backgroundColor = "#652384";
+        }
+
+        function restablecerFondo() {
+            document.querySelector("div").style.backgroundColor = "inherit";
+        }
+
+        document.getElementById("rojo").addEventListener("click", ponerRojo);
+        document.getElementById("verde").addEventListener("click", ponerVerde);
+        document.getElementById("azul").addEventListener("click", ponerAzul);
+        /* El evento input se produce según vayamos moviendo el range
+        El evento change se produce al terminar de mover el range */
+        document.getElementById("tamanho").addEventListener("input", cambiarMargen);
+
+        // Cuando el ratón esté sobre el elemento
+        document.querySelector("div").addEventListener("mouseover", cambiarFondo);
+
+        // Cuando el ratón salga del elemento
+        document.querySelector("div").addEventListener("mouseleave", restablecerFondo);
+
+    </script>
+</body>
+</html>
