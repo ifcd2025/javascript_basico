@@ -8,6 +8,7 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
+    <h1>Amstrad Basic</h1>
     <div>
         <p class="m-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate consectetur nesciunt earum excepturi eligendi accusamus architecto temporibus laudantium sapiente illum tempora, aut sequi dolores cum quidem quos? Nisi, dolore? Provident!</p>
         <p class="m-3">Sapiente nobis nulla ipsa corporis explicabo sequi debitis cupiditate consequuntur optio eveniet? Perspiciatis maiores perferendis corporis autem eaque quibusdam voluptates amet voluptate earum qui ipsa est incidunt mollitia, consequatur impedit.</p>
@@ -57,7 +58,14 @@
         }
 
         function restablecerFondo() {
+            // inherit o white
             document.querySelector("div").style.backgroundColor = "inherit";
+        }
+
+        function cambiarH1() {
+            // Con toogle, si el elemento no tiene la clase, se la añade.
+            // Si la tiene, se la quita
+            document.querySelector("h1").classList.toggle("bg-primary")
         }
 
         document.getElementById("rojo").addEventListener("click", ponerRojo);
@@ -67,12 +75,14 @@
         El evento change se produce al terminar de mover el range */
         document.getElementById("tamanho").addEventListener("input", cambiarMargen);
 
-        // Cuando el ratón esté sobre el elemento
-        document.querySelector("div").addEventListener("mouseover", cambiarFondo);
+        // Cuando el ratón entre en el elemento
+        document.querySelector("div").addEventListener("mouseenter", cambiarFondo);
 
         // Cuando el ratón salga del elemento
         document.querySelector("div").addEventListener("mouseleave", restablecerFondo);
 
+        // Cuando se haga doble click en el h1
+        document.querySelector("h1").addEventListener("dblclick", cambiarH1);
     </script>
 </body>
 </html>
