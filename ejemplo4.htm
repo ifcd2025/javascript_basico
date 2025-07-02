@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo 4</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="d-inline-flex flex-column p-3">
+        <h1>Conversor € $</h1>
+        <label for="euros">Euros</label>
+        <input type="text" id="euros" name="">
+        <label for="dolares">Dólares</label>
+        <input type="text" id="dolares" name="">
+        <div>
+            <input type="radio" id="opcionEuros" name="moneda">
+            <label for="opcionEuros">€</label>
+            <input type="radio" id="opcionDolares" name="moneda" class="ms-3">
+            <label for="opcionDolares">$</label>
+        </div>
+        <input type="button" id="convertir" name="" value="convertir" class="btn btn-outline-primary">
+    </div>
+
+    <script>
+        function convertir() {
+            const euros = document.getElementById("euros");
+            const dolares = document.getElementById("dolares");
+            const opcionEuros = document.getElementById("opcionEuros");
+            const opcionDolares = document.getElementById("opcionDolares");
+            //console.log(euros,dolares,opcionDolares, opcionEuros);
+            
+            // Si el radio de euros está marcado
+            if(opcionEuros.checked /*== true */) {
+                // "" es una cadena vacía, es decir, sin nada
+                // == sirve para ver si un valor es igual a otro
+                if(dolares.value == "") {
+                    window.alert("Debes escribir los dólares");
+                } else {
+                    euros.value = dolares.value * 1.18;
+                }
+            } else if(opcionDolares.checked /*== true */) {
+                if(euros.value == "") {
+                    window.alert("Debes escribir los euros");
+                } else {
+                    dolares.value = euros.value / 1.18;
+                }
+            } else {
+                window.alert("Debes marcar euros o dólares");
+            }
+        }
+        
+        document.getElementById("convertir")
+            .addEventListener("click", convertir);
+    </script>
+</body>
+</html>
