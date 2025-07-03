@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo7</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="m-auto w-25 p-3 d-flex flex-column gap-2">
+        <h1>Notas</h1>
+        <label for="nota">Nota</label>
+        <input type="text" id="nota" name="" class="text-end" autofocus autocomplete="off">
+        <input type="button" id="comprobar" name="" value="comprobar" class="btn btn-info">
+        <label for="resultado">Resultado</label>
+        <input type="text" id="resultado" readonly>
+        <label for="aprobados">Aprobados</label>
+        <input type="text" id="aprobados" readonly value="0">
+        <label for="suspensos">Suspensos</label>
+        <input type="text" id="suspensos" readonly value="0">
+        <label for="porcentajeAprobados">% Aprobados</label>
+        <input type="text" id="porcentajeAprobados" readonly value="%">
+        <input type="button" id="reiniciar" 
+            value="reiniciar" class="btn btn-danger">
+    </div>
+
+    <script>
+        function comprobar() {
+            const nota = document.getElementById("nota");
+            const resultado = document.getElementById("resultado");
+            if(nota.value == "") {
+                alert("Debes introducir la nota");
+                nota.focus();
+                return;
+            }
+            // || es un o. && es un y
+            if(nota.value < 0 || nota.value > 10) {
+                alert("La nota debe estar entre 0 y 10 😨");
+                nota.focus();
+                nota.select(); // Para que seleccione el texto que haya en nota
+                return;
+            }
+
+            if(nota.value >= 5) {
+                resultado.value = "Has aprobado 😊";
+                numeroAprobados = numeroAprobados + 1;
+                //numeroAprobados += 1;
+                //numeroAprobados++;
+                //++numeroAprobados;
+                document.getElementById("aprobados").value = numeroAprobados;
+            } else { // si no se cumple la condición del if
+                resultado.value = "Has supendido 😟";
+                numeroSuspensos= numeroSuspensos + 1;
+                //numeroSuspensos += 1;
+                //numeroSuspensos++;
+                //++numeroSuspensos;
+                document.getElementById("suspensos").value = numeroSuspensos;
+            }
+            nota.focus();
+            nota.select(); // Para que seleccione el texto que haya en nota
+            const porcentajeAprobados = document.getElementById("porcentajeAprobados");
+            // Como la división tiene prioridad sobre la suma, debemos poner esta
+            // suma entre paréntesis
+            // Usamos parseInt porque no queremos decimales
+            porcentajeAprobados.value = parseInt(numeroAprobados 
+                    / (numeroAprobados + numeroSuspensos) * 100) + "%";
+        }
+
+        // evt es un parámetro que incluye información sobre el evento.
+        // Lo podéis llamar como os dé la gana
+        function comprobarTecla(evt) {
+            if(evt.key == "Enter") {
+                // Llamamos a la función comprobar, es decir, que se ejecute
+                comprobar(); 
+            }
+        }
+
+        function reiniciar() {
+            numeroAprobados = 0;
+            numeroSuspensos = 0;
+            document.getElementById("aprobados").value = "0";
+            document.getElementById("suspensos").value = "0";
+            document.getElementById("porcentajeAprobados").value = "%";
+            const nota = document.getElementById("nota");
+            nota.focus();
+            nota.value = "";
+        }
+
+        // Variable globales (se definen fuera de las funciones y existen
+        //mientras no se cierre o recargue la página)
+        // y pueden ser accedidas directamente desde cualquier función
+        let numeroAprobados = 0;
+        let numeroSuspensos = 0;
+
+        document.getElementById("comprobar").addEventListener("click", comprobar);
+        document.getElementById("nota").addEventListener("keypress", comprobarTecla);
+        document.getElementById("reiniciar")
+            .addEventListener("click", reiniciar);
+    </script>
+</body>
+</html>

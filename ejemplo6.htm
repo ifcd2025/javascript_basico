@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo 6</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="m-auto w-25 p-3 d-flex flex-column gap-2">
+        <h1>Conversor grados</h1>
+        <label for="grados">Grados Celsius</label>
+        <input type="text" id="grados" name="">
+        <input type="button" 
+            id="aFarenheit" value="a Farenheit"
+            class="btn btn-secondary">
+        <input type="button" 
+            id="aKelvin" value="a Kelvin"
+            class="btn btn-dark">
+        <label for="resultado">Resultado</label>
+        <input type="text" id="resultado" readonly>
+    </div>
+
+    <script>
+        function convertirAFarenheit() {
+            const grados = document.getElementById("grados");
+            if(grados.value == "") {
+                window.alert("Debes poner los grados");
+                grados.focus();
+                return;
+            }
+            const resultado = document.getElementById("resultado");
+            resultado.value = grados.value * 1.8 + 32;
+        }
+
+        function convertirAKelvin() {
+            const grados = document.getElementById("grados");
+            if(grados.value == "") {
+                window.alert("Debes poner los grados");
+                grados.focus();
+                return;
+            }
+            const resultado = document.getElementById("resultado");
+            resultado.value = parseFloat(grados.value) + 273.15;
+            //resultado.value = grados.value * 1 + 273.15;
+        }        
+
+        document.getElementById("aFarenheit")
+            .addEventListener("click", convertirAFarenheit);
+        document.getElementById("aKelvin")
+            .addEventListener("click", convertirAKelvin);           
+    </script>
+
+</body>
+</html>

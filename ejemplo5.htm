@@ -23,8 +23,6 @@
         <input type="button" id="calcularAreaRectangulo" value="calcular área rectángulo" class="btn btn-primary mt-3">
         <input type="button" id="calcularAreaTriangulo" value="calcular área triángulo" class="btn btn-primary mt-3">
         <input type="button" id="borrar" value="borrar" class="btn btn-danger mt-3">
-
-
     </div>
 
     <script>
@@ -38,8 +36,6 @@
             // Eliminamos la clase
             base.classList.remove("bg-danger-subtle");
             altura.classList.remove("bg-danger-subtle");
-
-
 
             if (base.value == "") {
                 window.alert("Debes introducir la base");
@@ -65,8 +61,6 @@
                 // haya después no se ejecuta
                 return;
             }
-
-
             // value es el valor del cuadro de texto
             area.value = base.value * altura.value;
         }
@@ -94,15 +88,29 @@
                 // haya después no se ejecuta
                 return;
             }
-
             // value es el valor del cuadro de texto
             area.value = base.value * altura.value / 2;
         }
 
+        function borrar() {
+            const base = document.getElementById("base");
+            const altura = document.getElementById("altura");
+            const area = document.getElementById("area");
+            base.value = "";
+            altura.value = "";
+            area.value = "";
+            base.classList.remove("bg-danger-subtle");
+            altura.classList.remove("bg-danger-subtle");
+        }
+
+        // Las funciones no tienen que llamarse igual que los id
         document.getElementById("calcularAreaRectangulo")
             .addEventListener("click", calcularAreaRectangulo);
         document.getElementById("calcularAreaTriangulo")
             .addEventListener("click", calcularAreaTriangulo);
+        document.getElementById("borrar")
+            .addEventListener("click", borrar);
+
     </script>
 </body>
 
