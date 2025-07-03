@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <div class="m-auto w-25 p-4 d-flex flex-column">
+        <h1>Area Calculator</h1>
+        <label for="base">base</label>
+        <input type="text" id="base" name="" class="text-end">
+        <label for="altura">altura</label>
+        <input type="text" id="altura" name="" class="text-end">
+        <label for="area">Área</label>
+        <input type="text" id="area" name="" class="text-end" readonly>
+        <input type="button" id="calcularAreaRectangulo" value="calcular área rectángulo" class="btn btn-primary mt-3">
+        <input type="button" id="calcularAreaTriangulo" value="calcular área triángulo" class="btn btn-primary mt-3">
+        <input type="button" id="borrar" value="borrar" class="btn btn-danger mt-3">
+
+
+    </div>
+
+    <script>
+        function calcularAreaRectangulo() {
+            const base = document.getElementById("base");
+            const altura = document.getElementById("altura");
+            const area = document.getElementById("area");
+            // Ponemos de nuevo en blanco los cuadros de texto
+            //base.style.backgroundColor = "inherit";
+            //altura.style.backgroundColor = "inherit";
+            // Eliminamos la clase
+            base.classList.remove("bg-danger-subtle");
+            altura.classList.remove("bg-danger-subtle");
+
+
+
+            if (base.value == "") {
+                window.alert("Debes introducir la base");
+                // Le damos el foco a la base, es decir, que el cursor
+                // esté en el cuadro de texto
+                base.focus();
+                //base.style.backgroundColor = "red";
+                // Añadimos una clase a base
+                base.classList.add("bg-danger-subtle");
+                // Con return terminamos la función y todo lo que
+                // haya después no se ejecuta
+                return;
+            }
+            if (altura.value == "") {
+                window.alert("Debes introducir la altura");
+                // Le damos el foco a la altura, es decir, que el cursor
+                // esté en el cuadro de texto
+                altura.focus();
+                //altura.style.backgroundColor = "red";
+                // Añadimos una clase a altura
+                altura.classList.add("bg-danger-subtle");
+                // Con return terminamos la función y todo lo que
+                // haya después no se ejecuta
+                return;
+            }
+
+
+            // value es el valor del cuadro de texto
+            area.value = base.value * altura.value;
+        }
+
+        function calcularAreaTriangulo() {
+            const base = document.getElementById("base");
+            const altura = document.getElementById("altura");
+            const area = document.getElementById("area");
+
+            if (base.value == "") {
+                window.alert("Debes introducir la base");
+                // Le damos el foco a la base, es decir, que el cursor
+                // esté en el cuadro de texto
+                base.focus();
+                // Con return terminamos la función y todo lo que
+                // haya después no se ejecuta
+                return;
+            }
+            if (altura.value == "") {
+                window.alert("Debes introducir la altura");
+                // Le damos el foco a la altura, es decir, que el cursor
+                // esté en el cuadro de texto
+                altura.focus();
+                // Con return terminamos la función y todo lo que
+                // haya después no se ejecuta
+                return;
+            }
+
+            // value es el valor del cuadro de texto
+            area.value = base.value * altura.value / 2;
+        }
+
+        document.getElementById("calcularAreaRectangulo")
+            .addEventListener("click", calcularAreaRectangulo);
+        document.getElementById("calcularAreaTriangulo")
+            .addEventListener("click", calcularAreaTriangulo);
+    </script>
+</body>
+
+</html>
