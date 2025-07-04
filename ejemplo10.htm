@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+    <!-- sonidos de https://pixabay.com/sound-effects/search/applause/-->
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,7 @@
             const resultado = document.getElementById("resultado");
             if(numero.value == numeroAdivinar) {
                 resultado.textContent = "Has acertado 🥳"
+                sonidoAplauso.play();
                 // Le quitamos la clase d-none para que se muestre
                 document.getElementById("reiniciar").classList.remove("d-none");
                 // Le añadimos la clase d-none para que se oculte
@@ -45,6 +47,7 @@
                 imagenResultado.textContent = "😭";
             } else if(intentos > 10){
                 imagenResultado.textContent = "😟";
+                sonidoAbucheo.play();
             } else if(intentos > 5){
                 imagenResultado.textContent = "😐";
             }
@@ -59,8 +62,8 @@
         function reiniciar() {
             intentos = 0;
             document.getElementById("imagenResultado").textContent = "😃";
-            document.getElementById("resultado").textContent = "0";
-            document.getElementById("numero").textContent = "";
+            document.getElementById("resultado").textContent = "";
+            document.getElementById("numero").value = "";
             document.getElementById("numero").focus();
             numeroAdivinar = Math.floor(Math.random() * 100 + 1);
             document.getElementById("reiniciar").classList.add("d-none");
@@ -74,6 +77,10 @@
         let numeroAdivinar = Math.floor(Math.random() * 100 + 1);
 
         let intentos = 0;
+
+        const sonidoAplauso = new Audio("sonidos/aplausos.mp3");
+        const sonidoAbucheo= new Audio("sonidos/abucheos.mp3");
+
 
         document.getElementById("comprobar").addEventListener("click", comprobar);
         document.getElementById("numero")
