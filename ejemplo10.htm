@@ -13,6 +13,8 @@
         <label for="numero">Introduce el número</label>
         <input type="text" id="numero" name="">
         <input type="button" id="comprobar" name="" value="comprobar" class="btn btn-primary">
+        <input type="button" id="reiniciar" name="" value="nueva partida"
+             class="btn btn-danger d-none">
         <p id="resultado"></p>
         <p id="imagenResultado" class="display-6 text-center">😃</p>
     </div>
@@ -23,6 +25,10 @@
             const resultado = document.getElementById("resultado");
             if(numero.value == numeroAdivinar) {
                 resultado.textContent = "Has acertado 🥳"
+                // Le quitamos la clase d-none para que se muestre
+                document.getElementById("reiniciar").classList.remove("d-none");
+                // Le añadimos la clase d-none para que se oculte
+                document.getElementById("comprobar").classList.add("d-none");
             } else if(numero.value > numeroAdivinar) {
                 resultado.textContent = "el número a adivinar es menor ⬇️🤔"
             } else {
@@ -50,16 +56,30 @@
             }
         }
 
+        function reiniciar() {
+            intentos = 0;
+            document.getElementById("imagenResultado").textContent = "😃";
+            document.getElementById("resultado").textContent = "0";
+            document.getElementById("numero").textContent = "";
+            document.getElementById("numero").focus();
+            numeroAdivinar = Math.floor(Math.random() * 100 + 1);
+            document.getElementById("reiniciar").classList.add("d-none");
+            document.getElementById("comprobar").classList.remove("d-none");
+
+        }
+
         // Fórmula para generar un número entero entre un mínimo y un máximo
         // Math.floor(Math.random() * (max - min + 1) + min);
-        //const numeroAdivinar = Math.floor(Math.random() * (100 - 1 + 1) + 1);
-        const numeroAdivinar = Math.floor(Math.random() * 100 + 1);
+        //let numeroAdivinar = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+        let numeroAdivinar = Math.floor(Math.random() * 100 + 1);
 
         let intentos = 0;
 
         document.getElementById("comprobar").addEventListener("click", comprobar);
         document.getElementById("numero")
             .addEventListener("keypress", comprobarTecla);
+
+        document.getElementById("reiniciar").addEventListener("click", reiniciar);
     </script>
 </body>
 </html>
