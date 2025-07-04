@@ -8,7 +8,8 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <div class="d-flex justify-content-center gap-2 flex-wrap">
+    <h1 class="text-center">Candidatos</h1>
+    <div id="candidatos" class="d-flex justify-content-center gap-2 flex-wrap">
         <img src="pilotos/alpine_150x150.jpg" alt="" id="piloto1">
         <img src="pilotos/aston_150x150.jpeg" alt="" id="piloto2">
         <img src="pilotos/ferrari_150x150.jpeg" alt="" id="piloto3">
@@ -18,5 +19,41 @@
         <img src="pilotos/redbull_150x150.jpeg" alt="" id="piloto7">
         <img src="pilotos/williams_150x150.jpeg" alt="" id="piloto8">
     </div>
+    <h1 class="text-center">Elegidos</h1>
+    <div id="elegidos" class="d-flex justify-content-center gap-2 flex-wrap">
+    </div>
+    <script>
+        function cambiarPiloto1() {
+            const candidatos = document.getElementById("candidatos");
+            const elegidos = document.getElementById("elegidos");
+            const piloto = document.getElementById("piloto1");
+            // Tenemos que ver si el piloto está en el div candidatos o elegidos
+            // Vemos si el id del padre es igual al id de candidatos
+            if(piloto.parentNode.id == candidatos.id) {
+                // Lo movemos a elegidos. Con appendChild añadimos un nodo (elemento)
+                // a otro como último hijo y, si ya estaba en otro, lo mueve.
+                elegidos.appendChild(piloto);
+            } else {
+                candidatos.appendChild(piloto);
+            }
+        }
+
+        document.getElementById("piloto1")
+            .addEventListener("click", cambiarPiloto1);
+        document.getElementById("piloto2")
+            .addEventListener("click", cambiarPiloto2);
+        document.getElementById("piloto3")
+            .addEventListener("click", cambiarPiloto3);
+        document.getElementById("piloto4")
+            .addEventListener("click", cambiarPiloto4);
+        document.getElementById("piloto5")
+            .addEventListener("click", cambiarPiloto5);
+        document.getElementById("piloto6")
+            .addEventListener("click", cambiarPiloto6);
+        document.getElementById("piloto7")
+            .addEventListener("click", cambiarPiloto7);
+        document.getElementById("piloto8")
+            .addEventListener("click", cambiarPiloto8);                                                                                    
+    </script>
 </body>
 </html>
