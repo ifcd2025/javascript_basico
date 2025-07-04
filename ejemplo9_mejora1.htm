@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo9</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <h1 class="text-center">Candidatos</h1>
+    <div id="candidatos" class="d-flex justify-content-center gap-2 flex-wrap">
+        <img src="pilotos/alpine_150x150.jpg" alt="" id="piloto1">
+        <img src="pilotos/aston_150x150.jpeg" alt="" id="piloto2">
+        <img src="pilotos/ferrari_150x150.jpeg" alt="" id="piloto3">
+        <img src="pilotos/hass_150x150.jpeg" alt="" id="piloto4">
+        <img src="pilotos/mclaren_150x150.jpeg" alt="" id="piloto5">
+        <img src="pilotos/mercedes_150x150.jpeg" alt="" id="piloto6">
+        <img src="pilotos/redbull_150x150.jpeg" alt="" id="piloto7">
+        <img src="pilotos/williams_150x150.jpeg" alt="" id="piloto8">
+    </div>
+    <h1 class="text-center">Elegidos</h1>
+    <div id="elegidos" class="d-flex justify-content-center gap-2 flex-wrap">
+    </div>
+    <script>
+        function cambiarPiloto(evt) {
+            const candidatos = document.getElementById("candidatos");
+            const elegidos = document.getElementById("elegidos");
+            /* Para saber sobre que elemento se hizo click, u otro evento, tenemos dos
+            opciones:
+                - currentTarget: el elemento al que hicimos el addEventListener
+                - target: el elemento donde se produjo en realidad el evento, ya
+                    que puede ser un hijo del currentTarget
+            Tanto uno como otro son información del parámetro del evento
+            */
+            const piloto = evt.currentTarget;
+            // Tenemos que ver si el piloto está en el div candidatos o elegidos
+            // Vemos si el id del padre es igual al id de candidatos
+            if(piloto.parentNode.id == candidatos.id) {
+                // Lo movemos a elegidos. Con appendChild añadimos un nodo (elemento)
+                // a otro como último hijo y, si ya estaba en otro, lo mueve.
+                elegidos.appendChild(piloto);
+            } else {
+                candidatos.appendChild(piloto);
+            }
+        }
+       
+
+        document.getElementById("piloto1")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto2")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto3")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto4")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto5")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto6")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto7")
+            .addEventListener("click", cambiarPiloto);
+        document.getElementById("piloto8")
+            .addEventListener("click", cambiarPiloto);                                                                                    
+    </script>
+</body>
+</html>

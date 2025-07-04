@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ejemplo 10</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="m-auto w-25 p-4 d-flex flex-column gap-2">
+        <h1 class="h3">Adivina el número entre 1 y 100</h1>
+        <label for="numero">Introduce el número</label>
+        <input type="text" id="numero" name="">
+        <input type="button" id="comprobar" name="" value="comprobar" class="btn btn-primary">
+        <p id="resultado"></p>
+        <p id="imagenResultado" class="display-6 text-center">😃</p>
+    </div>
+
+    <script>
+        function comprobar(){
+            const numero =  document.getElementById("numero");
+            const resultado = document.getElementById("resultado");
+            if(numero.value == numeroAdivinar) {
+                resultado.textContent = "Has acertado 🥳"
+            } else if(numero.value > numeroAdivinar) {
+                resultado.textContent = "el número a adivinar es menor ⬇️🤔"
+            } else {
+                resultado.textContent = "el número a adivinar es mayor ⬆️🤔"
+            }
+            numero.focus();
+            numero.select(); // Seleccionamos el texto para que se pueda
+                            // escribir por encima sin tener que borrarlo
+            intentos++;
+            const imagenResultado = document.getElementById("imagenResultado");
+            if(intentos > 20) {
+                imagenResultado.textContent = "😡";
+            } else if(intentos > 15){
+                imagenResultado.textContent = "😭";
+            } else if(intentos > 10){
+                imagenResultado.textContent = "😟";
+            } else if(intentos > 5){
+                imagenResultado.textContent = "😐";
+            }
+        }
+
+        function comprobarTecla(evt) {
+            if(evt.key == "Enter") {
+                comprobar();
+            }
+        }
+
+        // Fórmula para generar un número entero entre un mínimo y un máximo
+        // Math.floor(Math.random() * (max - min + 1) + min);
+        //const numeroAdivinar = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+        const numeroAdivinar = Math.floor(Math.random() * 100 + 1);
+
+        let intentos = 0;
+
+        document.getElementById("comprobar").addEventListener("click", comprobar);
+        document.getElementById("numero")
+            .addEventListener("keypress", comprobarTecla);
+    </script>
+</body>
+</html>
