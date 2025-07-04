@@ -11,6 +11,8 @@
     <div class="m-auto w-25 p-3 d-flex flex-column gap-2">
         <h1>Lorem Ipsum</h1>
         <select id="tipoLetra">
+            <!-- Los nombres de los tipos de letra deben ser
+             los nombres en CSS / HTML -->
             <option>Times New Roman</option>
             <option>Arial</option>
             <option>Verdana</option>
@@ -24,9 +26,84 @@
             <input type="checkbox" id="subrayada">
             <label for="subrayada">Subrayada</label>            
         </div>
-        <label for="colorLetra">Color letra</label>
-        <input type="color" id="colorLetra">
-        <label for="colorFondo">Color fondo</label>
-        <input type="color" id="colorFondo">
+        <div>
+            <label for="colorLetra">Color letra</label>
+            <input type="color" id="colorLetra">
+            <label for="colorFondo">Color fondo</label>
+            <input type="color" id="colorFondo">
+        </div>
+    </div>
+
+    <script>
+        function cambiarTipoLetra() {
+            const h1 = document.querySelector("h1");
+            const tipoLetra = document.getElementById("tipoLetra").value;
+            h1.style.fontFamily = tipoLetra;
+
+            //document.querySelector("h1").style.fontFamily = document.getElementById("tipoLetra").value;
+        }
+
+        function cambiarColorLetra() {
+            const h1 = document.querySelector("h1");
+            const color = document.getElementById("colorLetra").value;
+            h1.style.color = color;          
+        }
+
+        function cambiarColorFondo() {
+            const h1 = document.querySelector("h1");
+            const color = document.getElementById("colorFondo").value;
+            h1.style.backgroundColor = color; 
+        }
+
+        function modificarCursiva() {
+            const h1 = document.querySelector("h1");
+            const cursiva = document.getElementById("cursiva");
+            if(cursiva.checked /* == true */) {
+                h1.style.fontStyle = "italic";
+            } else {
+                h1.style.fontStyle = "normal";
+            }
+            // Esto equivale al if else de arriba:
+            // Operador ternario; condición ? valorSi : valorNo
+            //h1.style.fontStyle = cursiva.checked ? "italic" : "normal";
+        }
+        
+        function modificarNegrita() {
+            const h1 = document.querySelector("h1");
+            const negrita = document.getElementById("negrita");
+            if(negrita.checked /* == true */) {
+                h1.style.fontWeight = "bold";
+            } else {
+                h1.style.fontWeight = "normal";
+            }
+        }
+
+        function modificarSubrayada() {
+            const h1 = document.querySelector("h1");
+            const subrayada = document.getElementById("subrayada");
+            if(subrayada.checked /* == true */) {
+                h1.style.textDecoration = "underline";
+            } else {
+                h1.style.textDecoration = "none";
+            }
+        }
+
+        document.getElementById("tipoLetra")
+            .addEventListener("change", cambiarTipoLetra);
+        document.getElementById("negrita")
+            .addEventListener("change", modificarNegrita);
+        document.getElementById("cursiva")
+            .addEventListener("change", modificarCursiva);
+        document.getElementById("subrayada")
+            .addEventListener("change", modificarSubrayada);
+        document.getElementById("colorLetra")
+        /* Con input el evento se produce según vaya el
+        usuario eligiendo el color.
+        Con change el evento solo se produce cuando se cierra
+        el cuadro de elegir el color */
+            .addEventListener("input", cambiarColorLetra);
+        document.getElementById("colorFondo")
+            .addEventListener("input", cambiarColorFondo);   
+    </script>
 </body>
 </html>
