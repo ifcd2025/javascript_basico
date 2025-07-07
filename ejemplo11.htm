@@ -4,6 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ejemplo11</title>
+   <!-- sonidos: https://pixabay.com/sound-effects/search/error/-->
    <style>
         header h1 {
             text-align: center;
@@ -40,12 +41,24 @@
             border: none;
             padding: .5rem;
         }
+        #victoria {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 3rem;
+            font-size: 2rem;
+            background-color: rgba(0, 0, 0, 0.700);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:white;
+        }
    </style>
 </head>
 <body>
     <header><h1>Tres en raya</h1></header>
     <main>
-        <div id="cabecera">Juegan <span id="juegan"></span></div>
+        <div id="cabecera">Juegan <span id="juegan">X</span></div>
         <div class="celda" id="c1"></div>
         <div class="celda" id="c2"></div>
         <div class="celda" id="c3"></div>
@@ -57,9 +70,107 @@
         <div class="celda" id="c9"></div>
         <input type="button" id="reiniciar" value="reiniciar">
     </main>
+    <div id="victoria">Han ganado las <span></span></div>
     <script>
         function reiniciar() {
+            document.getElementById("c1").textContent = "";
+            document.getElementById("c2").textContent = "";
+            document.getElementById("c3").textContent = "";
+            document.getElementById("c4").textContent = "";
+            document.getElementById("c5").textContent = "";
+            document.getElementById("c6").textContent = "";
+            document.getElementById("c7").textContent = "";
+            document.getElementById("c8").textContent = "";
+            document.getElementById("c9").textContent = "";
+            document.getElementById("c1").style.backgroundColor = "inherit";
+            document.getElementById("c2").style.backgroundColor = "inherit";
+            document.getElementById("c3").style.backgroundColor = "inherit";
+            document.getElementById("c4").style.backgroundColor = "inherit";
+            document.getElementById("c5").style.backgroundColor = "inherit";
+            document.getElementById("c6").style.backgroundColor = "inherit";
+            document.getElementById("c7").style.backgroundColor = "inherit";
+            document.getElementById("c8").style.backgroundColor = "inherit";
+            document.getElementById("c9").style.backgroundColor = "inherit";
+            // Volvemos a suscribirnos al evento
+             document.querySelector("main")
+                    .addEventListener("click", jugar);
+        }
 
+        function comprobarCeldas(celdaA, celdaB, celdaC) {
+            if(celdaA.textContent == celdaB.textContent 
+                    && celdaA.textContent == celdaC.textContent 
+                    && celdaC.textContent != "") {
+                window.alert("Victoria");
+                celdaA.style.backgroundColor = "red";
+                celdaB.style.backgroundColor = "red";
+                celdaC.style.backgroundColor = "red";
+                // Cuando gane alguien no debemos dejar seguir jugando.
+                // Una opción es "desuscribirse" del evento click
+                document.querySelector("main")
+                    .removeEventListener("click", jugar);
+            }
+        }
+
+        function comprobarVictoria() {
+            const c1 = document.getElementById("c1");
+            const c2 = document.getElementById("c2");
+            const c3 = document.getElementById("c3");
+            const c4 = document.getElementById("c4");
+            const c5 = document.getElementById("c5");
+            const c6 = document.getElementById("c6");
+            const c7 = document.getElementById("c7");
+            const c8 = document.getElementById("c8");
+            const c9 = document.getElementById("c9");
+
+           /* if(c1.textContent == c2.textContent && c1.textContent == c3.textContent && c3.textContent != "") {
+                window.alert("Victoria");
+                c1.style.backgroundColor = "red";
+                c2.style.backgroundColor = "red";
+                c3.style.backgroundColor = "red";
+            } else if(c4.textContent == c5.textContent && c4.textContent == c6.textContent  && c6.textContent != "") {
+                window.alert("Victoria");
+                c4.style.backgroundColor = "red";
+                c5.style.backgroundColor = "red";
+                c6.style.backgroundColor = "red";
+            } else if(c7.textContent == c8.textContent && c7.textContent == c9.textContent  && c9.textContent != "") {
+                window.alert("Victoria");
+                c7.style.backgroundColor = "red";
+                c8.style.backgroundColor = "red";
+                c9.style.backgroundColor = "red";
+            } else if(c1.textContent == c4.textContent && c7.textContent == c7.textContent  && c9.textContent != "") {
+                window.alert("Victoria");
+                c1.style.backgroundColor = "red";
+                c4.style.backgroundColor = "red";
+                c7.style.backgroundColor = "red";
+            } else if(c2.textContent == c5.textContent && c2.textContent == c8.textContent  && c8.textContent != "") {
+                window.alert("Victoria");
+                c2.style.backgroundColor = "red";
+                c5.style.backgroundColor = "red";
+                c8.style.backgroundColor = "red";
+            } else if(c3.textContent == c6.textContent && c3.textContent == c9.textContent  && c9.textContent != "") {
+                window.alert("Victoria");
+                c3.style.backgroundColor = "red";
+                c6.style.backgroundColor = "red";
+                c9.style.backgroundColor = "red";
+            } else if(c1.textContent == c5.textContent && c1.textContent == c9.textContent  && c9.textContent != "") {
+                window.alert("Victoria");
+                c1.style.backgroundColor = "red";
+                c5.style.backgroundColor = "red";
+                c9.style.backgroundColor = "red";
+            } else if(c3.textContent == c5.textContent && c3.textContent == c7.textContent  && c7.textContent != "") {
+                window.alert("Victoria");
+                c3.style.backgroundColor = "red";
+                c5.style.backgroundColor = "red";
+                c7.style.backgroundColor = "red";
+            }*/
+           comprobarCeldas(c1, c2, c3);
+           comprobarCeldas(c4, c5, c6);
+           comprobarCeldas(c7, c8, c9);
+           comprobarCeldas(c1, c4, c7);
+           comprobarCeldas(c2, c5, c8);
+           comprobarCeldas(c3, c6, c9);
+           comprobarCeldas(c1, c5, c9);
+           comprobarCeldas(c3, c5, c7);
         }
 
         function jugar(evt) {
@@ -70,9 +181,25 @@
             // al evento (en este caso el main)
             if(evt.target.classList.contains("celda")) {
                 const celda = evt.target;
-                celda.textContent = "X";
+                if(celda.textContent == "") {
+                    celda.textContent = turno;
+                    comprobarVictoria();
+                    if(turno == "X") {
+                        turno = "O";
+                    } else {
+                        turno = "X";
+                    }
+                    //turno = turno == "X"? "O" : "X";
+                    document.getElementById("juegan").textContent = turno;
+                } else {
+                    sonidoError.play();
+                }
             }
         }
+
+        // Para saber a quien le toca jugar
+        let turno = "X";
+        const sonidoError = new Audio("sonidos/error.mp3");
 
         document.getElementById("reiniciar")
             .addEventListener("click", reiniciar );
