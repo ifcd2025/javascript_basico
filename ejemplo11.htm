@@ -5,15 +5,40 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ejemplo11</title>
    <style>
+        header h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
         main {
             display: grid;
             grid-template-columns: repeat(3, 50px);
-            grid-template-rows: repeat(3, 50px);
+            grid-template-rows: auto repeat(3, 50px) auto;
             gap: 30px;
             width: fit-content;
             background-color: beige;
             margin: auto;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 1rem;
+        }
+        .celda {
+            border-radius: 5px;
+            border: 1px solid black;
+            text-align: center;
+            align-content: center; /* Alineación vertical */
+            font-size: 2rem;
+        }
+        #cabecera {
+            grid-column: 1 / 4; /* 1 / span 3 */
+            text-align: center;
+        }
+        #reiniciar {
+            grid-column: 1 / 4; /* 1 / span 3 */
+            background-color: rgb(231, 18, 18);
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: .5rem;
         }
    </style>
 </head>
@@ -32,5 +57,28 @@
         <div class="celda" id="c9"></div>
         <input type="button" id="reiniciar" value="reiniciar">
     </main>
+    <script>
+        function reiniciar() {
+
+        }
+
+        function jugar(evt) {
+            //console.log(evt.target, evt.currentTarget);
+            // Como se puede hacer clic en el main, en su cabeceran en las celdas
+            // o en el botón, solo nos interesan las celdas
+            // Usamos target pues currentTarget siempre es el que se suscribe
+            // al evento (en este caso el main)
+            if(evt.target.classList.contains("celda")) {
+                const celda = evt.target;
+                celda.textContent = "X";
+            }
+        }
+
+        document.getElementById("reiniciar")
+            .addEventListener("click", reiniciar );
+        
+        document.querySelector("main")
+            .addEventListener("click", jugar);
+    </script>
 </body>
 </html>
