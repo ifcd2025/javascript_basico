@@ -52,6 +52,15 @@
             background-color: rgba(0, 0, 0, 0.700);
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             color:white;
+            input {
+                display: block;
+                margin: 1rem auto;
+                border: none;
+                padding: .5rem 2rem;
+                background-color: rgb(241, 188, 150);
+                color:rgb(243, 5, 5);
+                font-weight: bold;
+            }
         }
    </style>
 </head>
@@ -112,6 +121,7 @@
                     .removeEventListener("click", jugar);
                 // Para mostrar el div de la victoria
                 document.getElementById("victoria").style.display = "block";
+                document.querySelector("#victoria span").textContent = turno;
             }
         }
 
