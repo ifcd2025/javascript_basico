@@ -70,7 +70,10 @@
         <div class="celda" id="c9"></div>
         <input type="button" id="reiniciar" value="reiniciar">
     </main>
-    <div id="victoria">Han ganado las <span></span></div>
+    <div id="victoria">
+        Han ganado las <span></span>
+        <input type="button" id="cerrar" value="cerrar">
+    </div>
     <script>
         function reiniciar() {
             document.getElementById("c1").textContent = "";
@@ -100,7 +103,6 @@
             if(celdaA.textContent == celdaB.textContent 
                     && celdaA.textContent == celdaC.textContent 
                     && celdaC.textContent != "") {
-                window.alert("Victoria");
                 celdaA.style.backgroundColor = "red";
                 celdaB.style.backgroundColor = "red";
                 celdaC.style.backgroundColor = "red";
@@ -108,6 +110,8 @@
                 // Una opción es "desuscribirse" del evento click
                 document.querySelector("main")
                     .removeEventListener("click", jugar);
+                // Para mostrar el div de la victoria
+                document.getElementById("victoria").style.display = "block";
             }
         }
 
@@ -206,6 +210,12 @@
         
         document.querySelector("main")
             .addEventListener("click", jugar);
+
+        // Usamos una función anónima. 
+        document.getElementById("cerrar")
+            .addEventListener("click", function() { 
+                document.getElementById("victoria").style.display = "none";
+            });
     </script>
 </body>
 </html>
