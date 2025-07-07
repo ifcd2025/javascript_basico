@@ -1,0 +1,112 @@
+:root {
+    --colorFondoVictoria: rgb(35, 147, 240);
+}
+
+header h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.puntos {
+    padding-top: .5rem;
+    font-size: .8rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: auto repeat(3, 50px) auto;
+    gap: 30px;
+    width: fit-content;
+    background-color: beige;
+    margin: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 1rem;
+    box-shadow: 2px 2px 2px rgb(177, 176, 176);
+}
+
+.celda {
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    align-content: center;
+    /* Alineación vertical */
+    font-size: 2rem;
+}
+
+#cabecera {
+    grid-column: 1 / 4;
+    /* 1 / span 3 */
+    text-align: center;
+    background-color: rgb(233, 230, 201);
+    box-shadow: 2px 2px 2px rgb(177, 176, 176);
+    padding: .3rem;
+}
+
+#reiniciar {
+    grid-column: 1 / 4;
+    /* 1 / span 3 */
+    background-color: rgb(231, 18, 18);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: .5rem;
+}
+
+#victoria {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.700);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+
+    input {
+        display: block;
+        margin: 1rem auto;
+        border: none;
+        padding: .5rem 2rem;
+        background-color: rgb(241, 188, 150);
+        color: rgb(243, 5, 5);
+        font-weight: bold;
+    }
+}
+/* la llamamos igual que la animacion, pero no tiene por qué */
+.animacionVictoria {
+    animation-duration: 1s;
+    animation-name: animacionVictoria;
+    /* Que se repita indefinidamente */
+    animation-iteration-count: infinite; 
+    /* Que vaya y vuelva. De no usarlo vueve bruscamente al estado inicial */
+    animation-direction: alternate;
+}
+
+@keyframes animacionVictoria {
+    /* el from en este caso es opcional, pues partimos
+    de la escala normal (1) */
+  from { /* al inicio */
+    transform: scale(1);
+  }
+
+  to { /* al final */
+    transform: scale(1.2);
+  }
+}
+
+/* la llamamos igual que la animacion, pero no tiene por qué */
+.animacionPunto {
+    animation-duration: 1s;
+    animation-name: animacionPunto;
+}
+
+@keyframes animacionPunto {
+  to {
+    font-weight: bold;
+    background-color:red;
+  }
+}
