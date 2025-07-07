@@ -55,7 +55,7 @@ main {
 }
 
 #victoria {
-    display: none;
+    displday: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -71,8 +71,8 @@ main {
         margin: 1rem auto;
         border: none;
         padding: .5rem 2rem;
-        background-color: rgb(241, 188, 150);
-        color: rgb(243, 5, 5);
+        background-color: rgb(55, 131, 55);
+        color: rgb(255, 255, 255);
         font-weight: bold;
     }
 }
